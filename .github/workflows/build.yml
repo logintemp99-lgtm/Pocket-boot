@@ -27,8 +27,6 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-  
-
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v5
         with:
@@ -102,21 +100,21 @@ jobs:
             exit 1
           fi
           mkdir -p dist
-          cp "$APK" dist/PocketBoot.apk
+          cp "$APK" dist/IsoBurner.apk
           ls -lh dist
 
       - name: Upload APK (Actions artifact)
         uses: actions/upload-artifact@v4
         with:
-          name: PocketBoot-apk
-          path: dist/PocketBoot.apk
+          name: IsoBurner-apk
+          path: dist/IsoBurner.apk
 
       # Creates a Release with the APK attached, so you can download it straight on your phone
-      # (Releases tab of your repository -> latest build -> PocketBoot.apk).
+      # (Releases tab of your repository -> latest build -> IsoBurner.apk).
       - name: Publish release
         if: github.event_name != 'pull_request'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}
-          name: PocketBoot build ${{ github.run_number }}
-          files: dist/PocketBoot.apk
+          name: IsoBurner build ${{ github.run_number }}
+          files: dist/IsoBurner.apk
